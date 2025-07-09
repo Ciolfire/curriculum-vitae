@@ -8,11 +8,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProjectsController extends AbstractController
 {
-    #[Route('/projects', name: 'app_projects')]
-    public function index(): Response
-    {
-        return $this->render('projects/index.html.twig', [
-            'controller_name' => 'ProjectsController',
-        ]);
-    }
+  #[Route('/projects', name: 'app_projects')]
+  public function index(): Response
+  {
+    return $this->render('projects/index.html.twig', [
+      'controller_name' => 'ProjectsController',
+    ]);
+  }
+
+  #[Route('/cv', name: 'cv')]
+  public function cv(): Response
+  {
+    return $this->render('cv/index.html.twig', [
+      'controller_name' => 'ProjectsController',
+    ]);
+  }
 }
