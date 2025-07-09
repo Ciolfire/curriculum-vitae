@@ -1,0 +1,74 @@
+FROM php:8.2-fpm
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    coreutils \
+    make \
+    # add here any prerequisite needed for the php extensions
+    libicu-dev \
+    ## libcurl4-openssl-dev \
+    ## libxml2-dev \
+    libpng-dev \
+    libwebp-dev \
+    libjpeg-dev \
+    libjpeg62-turbo-dev \
+    # freetype-dev \
+    libzip-dev \
+    zip \
+    curl
+    ## libc-client-dev libkrb5-dev \
+    ## Otherwise impossible to install imap
+    ## && rm -r /var/lib/apt/lists/* \
+
+# RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
+
+RUN mkdir -p /usr/src/php/ext/apcu && curl -fsSL        https://pecl.php.net/get/apcu | tar xvz -C "/usr/src/php/ext/apcu" --strip 1 && docker-php-ext-install apcu
+
+RUN docker-php-ext-configure gd --with-jpeg --with-webp && docker-php-ext-install \
+    # ctype \
+    # curl \
+    # dom \
+    # fileinfo \
+    gd \
+    #iconv \
+    #imap \
+    intl \
+    #mysqli \
+    opcache \
+    pdo \
+    pdo_mysql \
+    #phar \
+    #simplexml \
+    # tokenizer \
+    #xmlwriter \
+    zip
+
+RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig \
+        && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
+        && php composer-setup.php && rm composer-setup.php* \
+        && chmod +x composer.phar && mv composer.phar /usr/bin/composer
+
+COPY build/php/symfony.ini /etc/php8.2/conf.d/
+COPY build/php/symfony.ini /etc/php8.2/cli/conf.d/
+COPY build/php/symfony.pool.conf /etc/php8.2/php-fpm.d/
+#COPY build/php/xdebug.ini  /etc/php/8.2/conf.d/
+
+WORKDIR /var/www/curriculum-vitae
+
+USER www-data
+
+CMD ["php-fpm", "-F"]
+
+# EXPOSE 9000
+
+
+    # php-apcu \
+    # php-imagick \
+    # php-json \
+    # php-mcrypt \
+    # php-mbstring \
+    # php-xml \
+    # php-xdebug \
+    # php-openssl \
+    # php-zlib \
+    # php-session \
