@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+
+{% set page = "cv" %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+
+{% block main %}
+{# Name, picture and contact #}
+<div class="row"> 
+  <h1>{{ "infos"|trans }}🪪</h1>
+  <div class="col">
+  </div>
+</div>
+
+{# Summary #}
+<div class="row"> 
+  <h1>{{ "summary"|trans }}📄</h1>
+  <div class="col">
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed sagittis metus. Fusce convallis est sit amet euismod convallis. Integer vel tortor lacus. Pellentesque ut efficitur nulla, nec auctor massa. Vivamus a porta nunc. Suspendisse accumsan nec urna quis elementum. Integer sollicitudin sapien ante, eu hendrerit ipsum ultricies pharetra. Quisque eget turpis non magna dictum fringilla a sit amet leo. Ut venenatis placerat fringilla.</p>
+    <p>Aenean posuere ex tellus, vel mattis quam rutrum ut. Nulla blandit pellentesque dui eu consequat. Donec elementum, dui at aliquam aliquet, orci mi blandit turpis, at tempus urna neque et nunc. Suspendisse tempus euismod justo et eleifend. Aenean placerat lacus quam, eu vehicula ipsum accumsan et. Aliquam dictum egestas mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam auctor erat id dignissim ornare. Phasellus sit amet posuere dolor. Aenean placerat auctor sapien, sed rutrum nunc sodales vitae. </p>
+  </div>
+</div>
+
+{# Professional history #}
+  <h1>{{ "history"|trans }}🖥️</h1>
+  {% for company, employment in employments %}
+    <div class="row"> 
+      <div class="col-12">
+        {{ employment.start }} {% if employment.end != employment.start %} - {{ employment.end }} ({{ employment.end - employment.start }} {{ "year"|trans }}){% endif %}
+      </div>
+      <div class="col">
+        <h2>{{ employment.title }}</h3>
+        <h3>{{ company }} - {{ employment.location }}</h2>
+      </div>
+      <div class="col-12">
+        <ul>
+        {% for task, description in employment.tasks|default([]) %}
+          <li><strong>{{ task }}</strong> {{ description }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+
+{# Education #}
+<div class="row"> 
+  <h1>{{ "education"|trans }}🎓</h1>
+  <div class="col">
+  </div>
+</div>
+
+{# Skills #}
+<div class="row"> 
+  <h1>{{ "skills"|trans }}🛠️</h1>
+  <div class="col">
+  </div>
+</div>
+
+{# Achievements #}
+{# <div class="row"> 
+  <h1>{{ ""|trans }}</h1>
+  <div class="col">
+  </div>
+</div> #}
+
+{# Projects #}
+<div class="row"> 
+  <h1>{{ "projetcs"|trans }}👾</h1>
+  <div class="col">
+  </div>
+</div>
+
+{# Hobbies #}
+<div class="row"> 
+  <h1>{{ "hobbies"|trans }}♟️</h1>
+  <div class="col">
+  </div>
+</div>
+
+{% endblock %}

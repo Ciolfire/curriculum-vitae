@@ -1,0 +1,22 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item">
+          <a class="nav-link{% if page|default("index") == "cv" %} active{% endif %}" aria-current="page" href="#">{{ "cv"|trans }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{ "projects"|trans }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{ "contact"|trans }}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

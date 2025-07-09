@@ -12,7 +12,14 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="h-100">
-        {% block body %}{% endblock %}
+    <body>
+      <header>
+        {% block header %}
+          {% include "_header.html.twig" %}
+        {% endblock %}
+      </header>
+      <main id="{{ page|default('index') }}" class="container">
+        {% block main %}{% endblock %}
+      </main>
     </body>
 </html>

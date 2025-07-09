@@ -1,7 +1,40 @@
 // assets/styles/global.scss
 
 // customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
+$body-bg: #004034;
+$main-bg: #404040;
+$main-border: rgb(0, 151, 123);
+$white  : white;
+
+$navbar-dark-color:                 rgba($white, .55);
+$navbar-dark-hover-color:           rgba($white, .75);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-dark-toggler-border-color:  rgba($white, .1);
+$navbar-dark-brand-color:                 $navbar-dark-active-color;
+$navbar-dark-brand-hover-color:           $navbar-dark-active-color;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+main {
+  padding-top: 60px;
+  background-color: $main-bg;
+  color: silver;
+  border-left: 1px solid $main-border;
+  border-right: 1px solid $main-border;
+}
+
+#cv {
+  h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1.2em;
+  }
+}
